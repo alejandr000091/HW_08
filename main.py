@@ -69,16 +69,21 @@ def get_birthdays_per_week(users: list) -> list:
                 result_dict.update({bd_weak_day:(set_user_name)})
             else:
                 result_dict[bd_weak_day].append(user["name"])
-    return_result = user_sort(result_dict, current_day)
-    return return_result
+    users = user_sort(result_dict, current_day)
+    return users
 
 if __name__ == '__main__':
-    users = [{"name": "Bill", "birthday": date(1990, 12, 26)},
-             {"name": "John", "birthday": date(1995, 12, 29)},
-             {"name": "Tilda", "birthday": date(2000, 12, 30)},
-             {"name": "Marry", "birthday": date(2000, 1, 1)},
-             {"name": "Denis", "birthday": date(2005, 1, 2)},
-             {"name": "Alex", "birthday": date(1990, 1, 3)},
+    users = [{"name": "Bill", "birthday": datetime(1990, 12, 26).date()},
+             {"name": "John", "birthday": datetime(1995, 12, 29).date()},
+             {"name": "Tilda", "birthday": datetime(2000, 12, 30).date()},
+             {"name": "Marry", "birthday": datetime(2000, 1, 1).date()},
+             {"name": "Denis", "birthday": datetime(2005, 1, 2).date()},
+             {"name": "Alex", "birthday": datetime(1990, 1, 3).date()},
+             {"name": "Jan Koum", "birthday": datetime(1976, 1, 1).date()},
              ]
 
-    print(get_birthdays_per_week(users))
+    result = get_birthdays_per_week(users)
+    print(result)
+    # Виводимо результат
+    for day_name, names in result.items():
+        print(f"{day_name}: {', '.join(names)}")
