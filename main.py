@@ -19,7 +19,7 @@ def user_sort(result_dict, current_day):
             if search:
                 if step_day >= 5:
                     get_user = sorted_dict.get(0)
-                    if get_user == None:
+                    if not get_user:
                         sorted_dict.update({0:search})
                     else:
                         sorted_dict[0].append(search[0])
@@ -32,7 +32,7 @@ def user_sort(result_dict, current_day):
             if search:
                 if step_day == 0 and current_day > 0:
                     get_user = sorted_dict.get(0)
-                    if get_user == None:
+                    if not get_user:
                         sorted_dict.update({0:search})
                     else:
                         sorted_dict[0].append(search[0])
@@ -53,7 +53,7 @@ def get_period(start_date: date, days: int):
 def get_birthdays_per_week(users: list) -> list:
     result_dict = {}
     start_date = date.today()
-    #start_date = date(2023, 12, 26)
+    start_date = date(2023, 12, 26)
     current_day = start_date.weekday()
     period = get_period(start_date, 7)
     for user in users:
